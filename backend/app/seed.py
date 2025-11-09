@@ -5,6 +5,7 @@ from app.db.models.truck import Truck
 from app.db.models.driver import Driver
 from app.core.security import get_password_hash
 
+
 def create_seed_data():
     db = SessionLocal()
     try:

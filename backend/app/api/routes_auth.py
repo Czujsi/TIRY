@@ -8,6 +8,7 @@ from app.core.security import create_access_token
 
 router = APIRouter()
 
+
 @router.post('/register', response_model=UserOut)
 def register(user_in: UserCreate, db: Session = Depends(get_db)):
     existing = crud_user.get_user_by_email(db, user_in.email)
@@ -15,6 +16,7 @@ def register(user_in: UserCreate, db: Session = Depends(get_db)):
         raise HTTPException(status_code=400, detail='Email already registered')
     user = crud_user.create_user(db, email=user_in.email, password=user_in.password, full_name=user_in.full_name)
     return user
+
 
 @router.post('/token')
 def login(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(get_db)):

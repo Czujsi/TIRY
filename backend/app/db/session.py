@@ -7,7 +7,7 @@ engine = create_engine(
 )
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
-# dependency for FastAPI
+
 def get_db():
     db = SessionLocal()
     try:

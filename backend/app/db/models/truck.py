@@ -2,6 +2,7 @@ from sqlalchemy import Column, Integer, String, Float, ForeignKey
 from sqlalchemy.orm import relationship
 from app.db.base import Base
 
+
 class Truck(Base):
     __tablename__ = "trucks"
 

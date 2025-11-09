@@ -2,6 +2,7 @@ from sqlalchemy import Column, Integer, String, Float, ForeignKey, DateTime
 from sqlalchemy.orm import relationship
 from app.db.base import Base
 
+
 class GPSDevice(Base):
     __tablename__ = "gps_devices"
 

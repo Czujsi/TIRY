@@ -7,9 +7,11 @@ from app.core.security import get_current_user
 
 router = APIRouter()
 
+
 @router.get("/", response_model=list[DriverOut])
 def list_drivers(db: Session = Depends(get_db)):
     return db.query(Driver).all()
+
 
 @router.post("/", response_model=DriverOut)
 def create_driver(payload: DriverCreate, db: Session = Depends(get_db), current_user=Depends(get_current_user)):

@@ -2,6 +2,7 @@ from sqlalchemy import Column, Integer, String, DateTime, ForeignKey, Float
 from sqlalchemy.orm import relationship
 from app.db.base import Base
 
+
 class ServiceRecord(Base):
     __tablename__ = "service_records"
 

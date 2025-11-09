@@ -2,8 +2,10 @@ from sqlalchemy.orm import Session
 from app.db.models.user import User
 from app.core.security import get_password_hash, verify_password
 
+
 def get_user_by_email(db: Session, email: str):
     return db.query(User).filter(User.email == email).first()
+
 
 def create_user(db: Session, email: str, password: str, full_name: str | None = None, role: str = 'dispatcher'):
     user = User(email=email, full_name=full_name, hashed_password=get_password_hash(password), role=role)
@@ -11,6 +13,7 @@ def create_user(db: Session, email: str, password: str, full_name: str | None = 
     db.commit()
     db.refresh(user)
     return user
+
 
 def authenticate_user(db: Session, email: str, password: str):
     user = get_user_by_email(db, email)

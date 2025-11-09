@@ -2,6 +2,7 @@ from sqlalchemy import Column, Integer, String, DateTime, ForeignKey, Boolean
 from sqlalchemy.orm import relationship
 from app.db.base import Base
 
+
 class Maintenance(Base):
     __tablename__ = "maintenances"
 

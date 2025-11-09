@@ -2,6 +2,7 @@ from sqlalchemy import Column, Integer, Float, DateTime, ForeignKey
 from sqlalchemy.orm import relationship
 from app.db.base import Base
 
+
 class FuelLog(Base):
     __tablename__ = "fuel_logs"
 
