@@ -26,6 +26,10 @@ def create_access_token(data: dict, expires_delta: timedelta | None = None):
     encoded_jwt = jwt.encode(to_encode, settings.SECRET_KEY, algorithm=settings.ALGORITHM)
     return encoded_jwt
 
+def require_role(user, roles: list[str]):
+    if user.role not in roles:
+        raise HTTPException(status_code=403, detail="Forbidden")
+
 
 # Dependency to get DB session for route-level dependencies
 def get_db():
