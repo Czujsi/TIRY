@@ -14,8 +14,45 @@ logger = logging.getLogger("fleet_app")
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 
 
-@asynccontextmanager
-async def lifespan(app: FastAPI):
+def create_app() -> FastAPI:
+    app = FastAPI(
+        title="Fleet Management - API",
+        version="0.1.0",
+        description="API do zarządzania flotą ciągników siodłowych (demo)"
+    )
+
+    origins = [
+        "http://localhost:5173",
+        "http://127.0.0.1:5173",
+    ]
+
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=origins,
+        allow_credentials=True,
+        allow_methods=["*"],
+        allow_headers=["*"],
+    )
+
+    app.include_router(routes_auth.router, prefix="/api/v1/auth", tags=["auth"])
+    app.include_router(routes_trucks.router, prefix="/api/v1/trucks", tags=["trucks"])
+    app.include_router(routes_drivers.router, prefix="/api/v1/drivers", tags=["drivers"])
+    app.include_router(routes_stats.router, prefix="/api/v1/stats", tags=["stats"])
+    app.include_router(routes_maintenance.router, prefix="/api/v1/maintenance", tags=["maintenance"])
+
+
+    @app.get("/healthz", tags=["health"])
+    def healthz():
+        return {"status": "ok"}
+
+    return app
+
+
+app = create_app()
+
+
+@app.on_event("startup")
+def on_startup():
     try:
         logger.info("Tworzę tabelę/strukturę bazy (jeśli potrzebne)...")
         Base.metadata.create_all(bind=engine)
