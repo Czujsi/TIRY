@@ -36,6 +36,9 @@ def create_app() -> FastAPI:
     app.include_router(routes_auth.router, prefix="/api/v1/auth", tags=["auth"])
     app.include_router(routes_trucks.router, prefix="/api/v1/trucks", tags=["trucks"])
     app.include_router(routes_drivers.router, prefix="/api/v1/drivers", tags=["drivers"])
+    app.include_router(routes_stats.router, prefix="/api/v1/stats", tags=["stats"])
+    app.include_router(routes_maintenance.router, prefix="/api/v1/maintenance", tags=["maintenance"])
+
 
     @app.get("/healthz", tags=["health"])
     def healthz():
