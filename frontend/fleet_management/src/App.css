@@ -1,42 +1,134 @@
-#root {
-  max-width: 1280px;
+/* Reset i globalny layout */
+
+body {
+  margin: 0;
+  font-family: Inter, Arial, sans-serif;
+  /* gradient jako tło */
+  background: linear-gradient(180deg,rgba(242, 189, 92, 1) 0%, rgba(46, 46, 46, 0.95) 78%);;
+  background-size: cover;          /* zajmuje cały obszar */
+  background-repeat: no-repeat;    /* nie powtarza się */
+  background-attachment: fixed;    /* pozostaje na miejscu przy scrollowaniu */
+  color: #ffffff;                  /* biały tekst dla kontrastu */
+}
+
+a {
+  text-decoration: none;
+  color: #ffffff; /* biały, żeby kontrastował z gradientem */
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Layout główny */
+.container {
+  max-width: 1200px;
   margin: 0 auto;
   padding: 2rem;
-  text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+/* Nagłówek */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.header h1 {
+  margin: 0;
+  color: #ffffff; /* biały */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+/* Nawigacja */
+.nav-links {
+  display: flex;
+  gap: 12px;
 }
 
+.nav-links button {
+  padding: 6px 12px;
+  border: 2px solid #D4AF37; /* złota ramka */
+  border-radius: 6px;
+  cursor: pointer;
+  background: rgba(50,50,50,0.8); /* ciemnoszare, lekko przeźroczyste dla gradientu w tle */
+  color: #ffffff; /* biały tekst */
+  font-weight: bold;
+  transition: 0.2s;
+}
+
+.nav-links button:hover {
+  background: #D4AF37; /* złoty */
+  color: #2c2c2c; /* ciemnoszary kontrast */
+}
+
+/* Sekcje kart */
+.grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+/* Karty */
 .card {
-  padding: 2em;
+  background: rgba(58,58,58,0.85); /* lekko ciemny przezroczysty, żeby gradient było widać */
+  border-radius: 12px;
+  padding: 16px;
+  border: 1px solid #D4AF37; /* złota ramka */
+  transition: 0.2s;
 }
 
-.read-the-docs {
-  color: #888;
+.card:hover {
+  box-shadow: 0 6px 18px rgba(212, 175, 55, 0.4); /* złoty cień */
+}
+
+/* Formularze */
+form {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+form input, form select, form button {
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+form input, form select {
+  border: 1px solid #D4AF37;
+  background: rgba(50,50,50,0.8);
+  color: #ffffff;
+}
+
+form button {
+  background: rgba(50,50,50,0.8); /* ciemnoszary, przezroczysty */
+  color: #ffffff;
+  border: 2px solid #D4AF37;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+form button:hover {
+  background: #D4AF37;
+  color: #2c2c2c;
+}
+
+/* Status completed */
+.completed {
+  color: #32CD32; /* jasnozielony */
+  font-weight: bold;
+}
+
+.not-completed {
+  color: #FF6347; /* pomarańczowoczerwony */
+  font-weight: bold;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  margin-top: 3rem;
+  color: #ffffff; /* biały */
+  font-size: 0.9rem;
 }
