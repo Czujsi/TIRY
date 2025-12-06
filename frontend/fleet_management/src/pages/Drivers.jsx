@@ -17,7 +17,6 @@ export default function Drivers() {
 
   const headers = token ? { Authorization: `Bearer ${token}` } : {}
 
-  // --- Pobierz kierowców ---
   useEffect(() => {
     if (!token) return
     setLoading(true)
@@ -27,7 +26,6 @@ export default function Drivers() {
       .finally(() => setLoading(false))
   }, [token])
 
-  // --- Pobierz ciężarówki ---
   useEffect(() => {
     if (!token) return
     axios.get('/api/v1/trucks/', { headers })
@@ -36,7 +34,6 @@ export default function Drivers() {
   }, [token])
 
 
-  // --- Handlery formularza ---
   const handleChange = e => setForm(prev => ({ ...prev, [e.target.name]: e.target.value }))
 
   const handleCreate = async e => {
@@ -61,7 +58,6 @@ export default function Drivers() {
   }
 
 
-  // --- Przypisywanie kierowcy do ciężarówki ---
   const assignTruck = async (driverId, truckId) => {
     if (!truckId) return
     try {
@@ -75,7 +71,6 @@ export default function Drivers() {
     setSelectingDriver(null)
   }
 
-  // --- Usuwanie przypisania ---
   const unassignTruck = async (driverId) => {
     try {
       await axios.post(`/api/v1/drivers/${driverId}/remove_truck`, {}, { headers })
